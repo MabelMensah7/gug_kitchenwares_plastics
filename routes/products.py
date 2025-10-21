@@ -10,7 +10,7 @@ products = db.products
 def list_products():
     result = []
     for p in products.find():
-        p["_id"] = str(p["_id"])  # Convert ObjectId to string
+        p["_id"] = str(p["_id"]) 
         result.append(p)
     return result
 
@@ -21,5 +21,5 @@ def get_product(product_id: str):
     p = products.find_one({"_id": ObjectId(product_id)})
     if not p:
         return {"error": "Product not found"}
-    p["_id"] = str(p["_id"])  # Convert ObjectId to string
+    p["_id"] = str(p["_id"])  
     return p

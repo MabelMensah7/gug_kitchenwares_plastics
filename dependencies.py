@@ -20,3 +20,8 @@ def admin_required(user: dict = Depends(get_current_user)):
     if not user.get("is_admin", False):
         raise HTTPException(status_code=403, detail="Admin access required")
     return user
+
+def staff_required(user: dict = Depends(get_current_user)):
+    if not (user.get("is_staff", False) or user.get("is_admin", False)):
+        raise HTTPException(status_code=403, detail="Staff or Admin access required")
+    return user
